@@ -1,10 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const date = require(__dirname + "/date.js");
+
+console.log(date());
 
 const app = express();
 
-let items = ["Wake up at 6am", "Drink water", "Study for 1 hour", "Make Coffee"];
-let workItems = [];
+// "Wake up at 6am", "Drink water", "Study for 1 hour", "Make Coffee"
+const items = [];
+const workItems = [];
 
 
 app.set('view engine', 'ejs');
@@ -14,16 +18,7 @@ app.use(express.static("public"));
 
 app.get("/", function (req, res) {
 
-    let today = new Date();
-
-    let options = {
-        weekday: 'long',
-        day: 'numeric',
-        year: 'numeric',
-        month: 'long',
-    };
-    
-    let day = today.toLocaleDateString("en-US", options);
+    let day = date();
     
     res.render('list', {listTitle: day, newListItems: items});
 });
