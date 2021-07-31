@@ -1,25 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- Layouts -->
+<!-- EJS does not specifically support blocks, but layouts can be implemented by including headers and footers, like so: -->
+<%- include('header'); -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
-</head>
-
-<body>
-
-    <% if (kindOfDay === "Thursday" ) { %>
-        <h1 style="color: goldenrod;">
-            <%= kindOfDay %> ToDo List
+    <div class="box" id="heading">
+        <h1>
+            <%= listTitle %>
         </h1>
-        <% } else { %>
-            <h1 style="color: blue;">
-                <%= kindOfDay %> ToDo List
-            </h1>
+    </div>
+
+    <div class="box">
+        <% for (var i=0; i<newListItems.length; i++ ) { %>
+            <div class="item">
+                <input type="checkbox">
+                <p>
+                    <%= newListItems[i] %>
+                </p>
+            </div>
+
             <% } %>
 
-</body>
+            <form class="item" action="/" method="POST">
+                <input type="text" name="newItem" placeholder="New Todo">
+                <button type="submit" name="list" value="<%= listTitle %>">+</button>
+            </form>
+    </div>
 
-</html>
+  <!-- EJS does not specifically support blocks, but layouts can be implemented by including headers and footers, like so: -->
+
+    <%- include('footer'); -%>
+
+
