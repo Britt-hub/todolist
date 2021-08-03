@@ -18,13 +18,13 @@ app.use(express.static("public"));
 
 app.get("/", function (req, res) {
 
-    let day = date();
+    const day = date();
     
     res.render('list', {listTitle: day, newListItems: items});
 });
 
 app.post("/", function (req, res) {
-    let item = req.body.newItem;
+    const item = req.body.newItem;
 
     if (req.body.list === "Work List") {
         workItems.push(item);
